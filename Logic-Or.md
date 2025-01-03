@@ -1,3 +1,5 @@
+# Proposition 
+
 \[
 (a \rightarrow (a \rightarrow b)) \rightarrow b \equiv a \lor b,
 \]
@@ -11,7 +13,7 @@ This means:
 
 This simplification shows that \(a\) and \(b\) are essentially **independent** in the logical sense—\(a\) does not dictate \(b\), nor vice versa. The expression is satisfied as long as at least one of them is true, regardless of how \(a \rightarrow (a \rightarrow b)\) is constructed.
 
-Proof:
+## One way to proof the Proposition:
 
 The logical premise to deconstruct is: 
 
