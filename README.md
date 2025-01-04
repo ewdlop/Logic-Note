@@ -302,3 +302,72 @@ Three-state logic, also known as ternary logic, is a type of logic in which ther
 
 ### Example:
 In three-state logic, a digital signal can be in one of three states: 1 (high), 0 (low), or Z (high impedance).
+
+## Python Code for Implication Gate
+
+### Purpose
+The Python code simulates an implication gate (IMPLY gate) using a simple function. The implication gate is a fundamental component in logic circuits and can be used to construct other logic gates.
+
+### Code
+```python
+def implication_gate(p, q):
+    """
+    Simulate an implication gate (IMPLY gate).
+
+    Args:
+        p (bool): The first input to the gate.
+        q (bool): The second input to the gate.
+
+    Returns:
+        bool: The output of the implication gate.
+    """
+    return not p or q
+
+if __name__ == "__main__":
+    # Test the implication gate with different inputs
+    test_cases = [
+        (False, False),
+        (False, True),
+        (True, False),
+        (True, True)
+    ]
+
+    for p, q in test_cases:
+        result = implication_gate(p, q)
+        print(f"implication_gate({p}, {q}) = {result}")
+```
+
+### Usage
+To use the Python code, simply run the script. It will test the implication gate function with different inputs and print the results.
+
+## Coq Code for Implication Gate
+
+### Purpose
+The Coq code defines a module to prove properties of an implication gate. Coq is a formal proof management system that allows for the development of mathematical proofs and the verification of properties.
+
+### Code
+```coq
+Module ImplicationGate.
+
+(* Define the implication gate function *)
+Definition implication_gate (p q : bool) : bool :=
+  negb p || q.
+
+(* Prove the truth table properties of the implication gate *)
+Theorem implication_gate_tt_ff : implication_gate false false = true.
+Proof. reflexivity. Qed.
+
+Theorem implication_gate_tt_tf : implication_gate false true = true.
+Proof. reflexivity. Qed.
+
+Theorem implication_gate_tt_ft : implication_gate true false = false.
+Proof. reflexivity. Qed.
+
+Theorem implication_gate_tt_tt : implication_gate true true = true.
+Proof. reflexivity. Qed.
+
+End ImplicationGate.
+```
+
+### Usage
+To use the Coq code, load the file into a Coq environment and step through the proofs. The code defines the implication gate function and proves its truth table properties.
