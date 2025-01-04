@@ -62,3 +62,21 @@ Memristor-based implication logic is being explored for:
 3. **Energy-Efficient Logic:** Reducing power consumption in logic circuits.
 
 By using IMPLY gates and memristors, researchers aim to develop next-generation computing systems that are more efficient and scalable.
+
+---
+
+### **Application of Implication Gates in Formal Logic and Computer-Assisted Proof**
+
+Implication gates can also be applied in the field of formal logic and computer-assisted proof. Formal logic involves the use of logical systems to represent and analyze arguments, while computer-assisted proof involves the use of computer programs to assist in the development and verification of mathematical proofs.
+
+#### **1. Formal Logic**
+In formal logic, implication gates can be used to construct logical circuits that represent complex logical expressions. These circuits can then be used to evaluate the truth values of the expressions and verify logical arguments.
+
+#### **Example:**
+Consider the logical expression \( (p \rightarrow q) \land (q \rightarrow r) \). This expression can be represented using implication gates and evaluated to determine its truth value.
+
+#### **2. Computer-Assisted Proof**
+In computer-assisted proof, implication gates can be used to implement logical operations within proof systems. These systems can then be used to verify the correctness of mathematical proofs by evaluating the logical expressions involved.
+
+#### **Example:**
+The proof of a mathematical theorem may involve a series of logical implications. By representing these implications using implication gates, a computer program can evaluate the proof and verify its correctness.

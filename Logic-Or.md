@@ -85,3 +85,46 @@ a \lor b
 \]
 
 This represents the logical simplification of the original statement.
+
+## First-Order Logic
+
+First-order logic (FOL) is a formal system used in mathematics, philosophy, linguistics, and computer science. It extends propositional logic by including quantifiers and predicates, which allows for the expression of statements about objects and their properties.
+
+### Example:
+Consider the statement "All humans are mortal." In first-order logic, this can be expressed as:
+```
+∀x (Human(x) → Mortal(x))
+```
+This reads as "For all x, if x is a human, then x is mortal."
+
+## Fuzzy Logic
+
+Fuzzy logic is a form of many-valued logic that deals with reasoning that is approximate rather than fixed and exact. Unlike classical logic where variables may only be true or false, fuzzy logic variables may have a truth value that ranges between 0 and 1.
+
+### Example:
+In fuzzy logic, the statement "The weather is hot" can have a truth value of 0.7, indicating that it is somewhat hot.
+
+## Modal Logic
+
+Modal logic extends classical logic to include operators expressing modality. Modality refers to concepts like possibility, necessity, and contingency.
+
+### Example:
+The statement "It is necessary that 2+2=4" can be expressed in modal logic as:
+```
+□(2+2=4)
+```
+Where "□" denotes necessity.
+
+## Many-Valued Logic
+
+Many-valued logic is a type of logic in which there are more than two truth values. It generalizes classical two-valued logic.
+
+### Example:
+In a three-valued logic system, a statement can be true, false, or unknown.
+
+## Three-Valued Logic
+
+Three-valued logic is a specific type of many-valued logic where there are three truth values: true, false, and unknown (or indeterminate).
+
+### Example:
+In three-valued logic, the statement "The light is on" can be true, false, or unknown.
