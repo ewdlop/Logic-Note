@@ -215,3 +215,90 @@ https://ncatlab.org/nlab/show/computational+trilogy
 
 20. **你也一樣（Tu Quoque）**：這種謬誤透過指責對方的行為與其主張不一致，來試圖反駁對方的論點，藉此使對方顯得虛偽。然而，這種論證方式並未真正解決所討論的議題。
     - *例子*： 「當某人建議他人戒菸時，對方回應：「你自己也抽菸，憑什麼教訓我？」這種回應並未針對戒菸的益處進行討論，而是轉移焦點至建議者的行為。」
+
+## First-Order Logic
+
+First-order logic (FOL) is a formal system used in mathematics, philosophy, linguistics, and computer science. It extends propositional logic by including quantifiers and predicates, which allows for the expression of statements about objects and their properties.
+
+### Example:
+Consider the statement "All humans are mortal." In first-order logic, this can be expressed as:
+```
+∀x (Human(x) → Mortal(x))
+```
+This reads as "For all x, if x is a human, then x is mortal."
+
+## Fuzzy Logic
+
+Fuzzy logic is a form of many-valued logic that deals with reasoning that is approximate rather than fixed and exact. Unlike classical logic where variables may only be true or false, fuzzy logic variables may have a truth value that ranges between 0 and 1.
+
+### Example:
+In fuzzy logic, the statement "The weather is hot" can have a truth value of 0.7, indicating that it is somewhat hot.
+
+## Modal Logic
+
+Modal logic extends classical logic to include operators expressing modality. Modality refers to concepts like possibility, necessity, and contingency.
+
+### Example:
+The statement "It is necessary that 2+2=4" can be expressed in modal logic as:
+```
+□(2+2=4)
+```
+Where "□" denotes necessity.
+
+## Many-Valued Logic
+
+Many-valued logic is a type of logic in which there are more than two truth values. It generalizes classical two-valued logic.
+
+### Example:
+In a three-valued logic system, a statement can be true, false, or unknown.
+
+## Three-Valued Logic
+
+Three-valued logic is a specific type of many-valued logic where there are three truth values: true, false, and unknown (or indeterminate).
+
+### Example:
+In three-valued logic, the statement "The light is on" can be true, false, or unknown.
+
+## Formal Logic
+
+Formal logic is the study of inference with purely formal content. It involves the use of symbols and rules to represent and analyze logical arguments.
+
+### Example:
+A simple formal logic argument:
+```
+1. All humans are mortal.
+2. Socrates is a human.
+3. Therefore, Socrates is mortal.
+```
+
+## Computer-Assisted Proof
+
+Computer-assisted proof involves the use of computer programs to assist in the development and verification of mathematical proofs.
+
+### Example:
+The proof of the Four Color Theorem, which states that any map can be colored with at most four colors such that no two adjacent regions have the same color, was verified using a computer.
+
+## Predicate Logic
+
+Predicate logic is an extension of propositional logic that includes quantifiers and predicates. It allows for the expression of statements involving variables and their properties.
+
+### Example:
+The statement "There exists a person who is a teacher" can be expressed in predicate logic as:
+```
+∃x (Person(x) ∧ Teacher(x))
+```
+This reads as "There exists an x such that x is a person and x is a teacher."
+
+## Proofs-as-Programs
+
+The proofs-as-programs paradigm, also known as the Curry-Howard correspondence, is a direct relationship between computer programs and mathematical proofs. It states that a proof of a proposition corresponds to a program, and the proposition corresponds to the type of the program.
+
+### Example:
+A proof of the proposition "A implies B" corresponds to a function that takes a proof of A and returns a proof of B.
+
+## Three-State Logic
+
+Three-state logic, also known as ternary logic, is a type of logic in which there are three truth values. It is used in digital electronics to represent three different states: high, low, and high impedance.
+
+### Example:
+In three-state logic, a digital signal can be in one of three states: 1 (high), 0 (low), or Z (high impedance).
