@@ -1,0 +1,154 @@
+from nltk.sem.logic import *
+from nltk.sem import Assignment
+from nltk.inference import ResolutionProver
+
+# Create a parser for first-order logic expressions
+read_expr = Expression.fromstring
+
+# Define a simple domain model
+class DomainModel:
+    def __init__(self):
+        self.entities = set()
+        self.properties = {}
+        self.relations = {}
+        
+    def add_entity(self, entity):
+        self.entities.add(entity)
+        
+    def add_property(self, prop_name, entities):
+        self.properties[prop_name] = set(entities)
+        
+    def add_relation(self, rel_name, entity_pairs):
+        self.relations[rel_name] = set(entity_pairs)
+        
+    def evaluate(self, expression, assignment):
+        """
+        Evaluate a logical expression in the model
+        """
+        if isinstance(expression, ApplicationExpression):
+            function, arguments = expression.uncurry()
+            if isinstance(function, ConstantExpression):
+                # Handle predicates (properties and relations)
+                pred_name = str(function)
+                if pred_name in self.properties:
+                    arg = str(arguments[0])
+                    return arg in self.properties[pred_name]
+                elif pred_name in self.relations:
+                    arg1, arg2 = str(arguments[0]), str(arguments[1])
+                    return (arg1, arg2) in self.relations[pred_name]
+            
+        elif isinstance(expression, AndExpression):
+            return (self.evaluate(expression.first, assignment) and 
+                   self.evaluate(expression.second, assignment))
+            
+        elif isinstance(expression, OrExpression):
+            return (self.evaluate(expression.first, assignment) or 
+                   self.evaluate(expression.second, assignment))
+            
+        elif isinstance(expression, NegatedExpression):
+            return not self.evaluate(expression.term, assignment)
+            
+        elif isinstance(expression, ExistsExpression):
+            variable = expression.variable
+            term = expression.term
+            for entity in self.entities:
+                assignment[variable] = entity
+                if self.evaluate(term, assignment):
+                    return True
+            return False
+            
+        elif isinstance(expression, AllExpression):
+            variable = expression.variable
+            term = expression.term
+            for entity in self.entities:
+                assignment[variable] = entity
+                if not self.evaluate(term, assignment):
+                    return False
+            return True
+            
+        return False
+
+# Example usage:
+
+# Create and populate a model
+model = DomainModel()
+
+# Add some entities
+model.add_entity('john')
+model.add_entity('mary')
+model.add_entity('bill')
+
+# Add properties
+model.add_property('human', ['john', 'mary', 'bill'])
+model.add_property('mortal', ['john', 'mary', 'bill'])
+
+# Add relations
+model.add_relation('loves', [('john', 'mary'), ('mary', 'bill')])
+
+# Create logical expressions
+expr1 = read_expr('all x. (human(x) -> mortal(x))')
+expr2 = read_expr('exists x. (human(x) & loves(x, mary))')
+expr3 = read_expr('all x. all y. (loves(x,y) -> human(x))')
+
+# Create an assignment for free variables (if any)
+g = Assignment(model.entities)
+
+# Test some inferences
+def test_inference():
+    # Premise: All humans are mortal
+    # Premise: John is human
+    # Conclusion: John is mortal
+    
+    premises = [
+        read_expr('all x. (human(x) -> mortal(x))'),
+        read_expr('human(john)')
+    ]
+    conclusion = read_expr('mortal(john)')
+    
+    # Use NLTK's resolution prover
+    prover = ResolutionProver()
+    print(f"Valid inference: {prover.prove(conclusion, premises)}")
+
+# Example queries
+print("Testing logical expressions:")
+print(f"All humans are mortal: {model.evaluate(expr1, g)}")
+print(f"Someone loves Mary: {model.evaluate(expr2, g)}")
+print(f"All lovers are human: {model.evaluate(expr3, g)}")
+
+# Run inference test
+test_inference()
+
+# Advanced example: Define and test more complex logical rules
+def check_transitivity():
+    # Test if 'loves' relation is transitive
+    trans_rule = read_expr('all x. all y. all z. ((loves(x,y) & loves(y,z)) -> loves(x,z))')
+    return model.evaluate(trans_rule, g)
+
+def test_complex_query():
+    # "Everyone who loves someone is loved by someone"
+    query = read_expr('all x. (exists y. loves(x,y) -> exists z. loves(z,x))')
+    return model.evaluate(query, g)
+
+print("\nAdvanced tests:")
+print(f"Love is transitive: {check_transitivity()}")
+print(f"Everyone who loves is loved: {test_complex_query()}")
+
+# Example of adding new logical rules
+def add_friendship_rules():
+    model.add_relation('friends', [('john', 'bill'), ('mary', 'john')])
+    
+    # Define symmetric property of friendship
+    symmetric_rule = read_expr('all x. all y. (friends(x,y) -> friends(y,x))')
+    
+    # Test if friendship is symmetric in our model
+    print(f"Friendship is symmetric: {model.evaluate(symmetric_rule, g)}")
+
+add_friendship_rules()
+
+# Example of handling complex nested quantifiers
+def test_nested_quantifiers():
+    # "Everyone loves someone who loves someone"
+    nested_expr = read_expr('all x. exists y. exists z. (loves(x,y) & loves(y,z))')
+    return model.evaluate(nested_expr, g)
+
+print(f"Nested quantifier test: {test_nested_quantifiers()}")
